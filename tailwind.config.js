@@ -28,7 +28,11 @@ module.exports = {
 				font30: "30px",
 			},
 			height: {
+				63: "63px",
 				97: "97px",
+				177: "177px",
+				201: "201px",
+				225: "225px",
 				421: "421px",
 				534: "534px",
 			},
@@ -38,6 +42,7 @@ module.exports = {
 			},
 			spacing: {
 				38: "38px",
+				52: "52px",
 			},
 			width: {
 				72: "72px",
