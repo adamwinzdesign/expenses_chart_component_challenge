@@ -1,6 +1,6 @@
 import "./App.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from "chart.js";
-import { Bar, Chart } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
@@ -9,13 +9,13 @@ const getOrCreateTooltip = (chart) => {
 
 	if (!tooltipEl) {
 		tooltipEl = document.createElement("div");
-		tooltipEl.style.background = "rgba(0, 0, 0, 0.7)";
-		tooltipEl.style.borderRadius = "3px";
+		tooltipEl.style.background = "#382314";
+		tooltipEl.style.borderRadius = "5px";
 		tooltipEl.style.color = "white";
 		tooltipEl.style.opacity = 1;
 		tooltipEl.style.pointerEvents = "none";
 		tooltipEl.style.position = "absolute";
-		tooltipEl.style.transform = "translate(-50%, 0)";
+		tooltipEl.style.transform = "translate(-50%, -40px)";
 		tooltipEl.style.transition = "all .1s ease";
 
 		const table = document.createElement("table");
@@ -44,7 +44,7 @@ const externalTooltipHandler = (context) => {
 		const titleLines = tooltip.title || [];
 		const bodyLines = tooltip.body.map((b) => b.lines);
 
-		const tableHead = document.createElement("thead");
+		// const tableHead = document.createElement("thead");
 
 		titleLines.forEach((title) => {
 			const tr = document.createElement("tr");
@@ -56,21 +56,21 @@ const externalTooltipHandler = (context) => {
 
 			th.appendChild(text);
 			tr.appendChild(th);
-			tableHead.appendChild(tr);
+			// tableHead.appendChild(tr);
 		});
 
 		const tableBody = document.createElement("tbody");
 		bodyLines.forEach((body, i) => {
-			const colors = tooltip.labelColors[i];
+			// const colors = tooltip.labelColors[i];
 
-			const span = document.createElement("span");
-			span.style.background = colors.backgroundColor;
-			span.style.borderColor = colors.borderColor;
-			span.style.borderWidth = "2px";
-			span.style.marginRight = "10px";
-			span.style.height = "10px";
-			span.style.width = "10px";
-			span.style.display = "inline-block";
+			// const span = document.createElement("span");
+			// span.style.background = colors.backgroundColor;
+			// span.style.borderColor = colors.borderColor;
+			// span.style.borderWidth = "2px";
+			// span.style.marginRight = "10px";
+			// span.style.height = "10px";
+			// span.style.width = "10px";
+			// span.style.display = "inline-block";
 
 			const tr = document.createElement("tr");
 			tr.style.backgroundColor = "inherit";
@@ -79,9 +79,11 @@ const externalTooltipHandler = (context) => {
 			const td = document.createElement("td");
 			td.style.borderWidth = 0;
 
-			const text = document.createTextNode(body);
+			console.log(body);
 
-			td.appendChild(span);
+			const text = document.createTextNode(`${"$" + body}`);
+
+			// td.appendChild(span);
 			td.appendChild(text);
 			tr.appendChild(td);
 			tableBody.appendChild(tr);
@@ -95,7 +97,7 @@ const externalTooltipHandler = (context) => {
 		}
 
 		// Add new children
-		tableRoot.appendChild(tableHead);
+		// tableRoot.appendChild(tableHead);
 		tableRoot.appendChild(tableBody);
 	}
 
