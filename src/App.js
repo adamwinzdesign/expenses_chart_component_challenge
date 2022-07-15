@@ -81,8 +81,13 @@ const externalTooltipHandler = (context) => {
 };
 
 const options = {
-	barHoverBackgroundColor: "#FF9B86",
+	onHover: (event, active, chart) => {
+		console.log(active[0]?.index);
+	},
+	// barHoverBackgroundColor: "#FF9B86",
+	// barHoverBackgroundColor: "#B4E0E56",  // light_cyan
 	maintainAspectRatio: false,
+	borderSkipped: false,
 	plugins: {
 		tooltip: {
 			enabled: false,
