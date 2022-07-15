@@ -5,6 +5,28 @@ import { Bar } from "react-chartjs-2";
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 const options = {
+	plugins: {
+		tooltip: {
+			y: "100px",
+			backgroundColor: "#382314",
+			caretSize: 0,
+			displayColors: false,
+			opacity: 1,
+			titleFont: {
+				size: 0,
+			},
+			titleMarginBottom: 0,
+			bodyFont: {
+				size: 18,
+			},
+			callbacks: {
+				label: function (tooltipItems) {
+					return "$" + tooltipItems.formattedValue;
+				},
+			},
+			yAlign: "top",
+		},
+	},
 	responsive: true,
 	scales: {
 		x: {
@@ -29,13 +51,15 @@ const data = {
 	labels,
 	datasets: [
 		{
-			label: "Earnings",
+			label: "",
 			data: [17.45, 34.91, 52.36, 31.07, 23.39, 43.28, 25.48],
 			backgroundColor: "#EC755D",
 			borderRadius: 5,
 		},
 	],
 };
+
+console.log(Tooltip);
 
 function App() {
 	return (
@@ -55,7 +79,7 @@ function App() {
 					{/* chart */}
 					<div className='w-343 h-421 bg-card_white rounded-10'>
 						{/* chart body */}
-						<div>
+						<div className='relative'>
 							<Bar options={options} data={data} />
 						</div>
 
