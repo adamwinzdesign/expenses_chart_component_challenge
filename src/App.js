@@ -6,6 +6,21 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 const options = {
 	responsive: true,
+	scales: {
+		x: {
+			grid: {
+				display: false,
+			},
+		},
+		y: {
+			grid: {
+				display: false,
+			},
+			ticks: {
+				display: false,
+			},
+		},
+	},
 };
 
 const labels = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
@@ -17,6 +32,7 @@ const data = {
 			label: "Earnings",
 			data: [17.45, 34.91, 52.36, 31.07, 23.39, 43.28, 25.48],
 			backgroundColor: "#EC755D",
+			borderRadius: 5,
 		},
 	],
 };
