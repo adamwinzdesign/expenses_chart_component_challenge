@@ -1,8 +1,25 @@
 import "./App.css";
-import { Chart as ChartJS, BarElement, Tooltip } from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-ChartJS.register(BarElement, Tooltip);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
+
+const options = {
+	responsive: true,
+};
+
+const labels = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+const data = {
+	labels,
+	datasets: [
+		{
+			label: "Earnings",
+			data: [17.45, 34.91, 52.36, 31.07, 23.39, 43.28, 25.48],
+			backgroundColor: "#EC755D",
+		},
+	],
+};
 
 function App() {
 	return (
@@ -22,7 +39,9 @@ function App() {
 					{/* chart */}
 					<div className='w-343 h-421 bg-card_white rounded-10'>
 						{/* chart body */}
-						<div></div>
+						<div>
+							<Bar options={options} data={data} />
+						</div>
 
 						{/* summary */}
 						<div className='w-full h-px bg-cream_bg' />
