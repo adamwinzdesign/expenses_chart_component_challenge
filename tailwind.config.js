@@ -14,6 +14,7 @@ module.exports = {
 				orange_main: "#EC755D",
 				orange_light: "FF9B86",
 				cyan: "#76B5BC",
+				light_cyan: "#B4E0E5",
 				card_white: "#FFFBF6",
 				black: "#382314",
 				medium_brown: "#92857A",
@@ -24,6 +25,7 @@ module.exports = {
 			fontSize: {
 				font15: "15px",
 				font24: "24px",
+				font30: "30px",
 			},
 			height: {
 				97: "97px",
@@ -32,6 +34,7 @@ module.exports = {
 			},
 			lineHeight: {
 				31: "31px",
+				39: "39px",
 			},
 			spacing: {
 				38: "38px",
