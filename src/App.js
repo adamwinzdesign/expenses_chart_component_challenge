@@ -16,7 +16,7 @@ const getOrCreateTooltip = (chart) => {
 		tooltipEl.style.pointerEvents = "none";
 		tooltipEl.style.position = "absolute";
 		tooltipEl.style.transform = "translate(-50%, -40px)";
-		tooltipEl.style.transition = "all .1s ease";
+		tooltipEl.style.transition = "all .2s ease";
 
 		const table = document.createElement("table");
 		table.style.margin = "0px";
@@ -41,37 +41,10 @@ const externalTooltipHandler = (context) => {
 
 	// Set Text
 	if (tooltip.body) {
-		const titleLines = tooltip.title || [];
 		const bodyLines = tooltip.body.map((b) => b.lines);
-
-		// const tableHead = document.createElement("thead");
-
-		titleLines.forEach((title) => {
-			const tr = document.createElement("tr");
-			tr.style.borderWidth = 0;
-
-			const th = document.createElement("th");
-			th.style.borderWidth = 0;
-			const text = document.createTextNode(title);
-
-			th.appendChild(text);
-			tr.appendChild(th);
-			// tableHead.appendChild(tr);
-		});
 
 		const tableBody = document.createElement("tbody");
 		bodyLines.forEach((body, i) => {
-			// const colors = tooltip.labelColors[i];
-
-			// const span = document.createElement("span");
-			// span.style.background = colors.backgroundColor;
-			// span.style.borderColor = colors.borderColor;
-			// span.style.borderWidth = "2px";
-			// span.style.marginRight = "10px";
-			// span.style.height = "10px";
-			// span.style.width = "10px";
-			// span.style.display = "inline-block";
-
 			const tr = document.createElement("tr");
 			tr.style.backgroundColor = "inherit";
 			tr.style.borderWidth = 0;
@@ -79,11 +52,8 @@ const externalTooltipHandler = (context) => {
 			const td = document.createElement("td");
 			td.style.borderWidth = 0;
 
-			console.log(body);
-
 			const text = document.createTextNode(`${"$" + body}`);
 
-			// td.appendChild(span);
 			td.appendChild(text);
 			tr.appendChild(td);
 			tableBody.appendChild(tr);
@@ -97,7 +67,6 @@ const externalTooltipHandler = (context) => {
 		}
 
 		// Add new children
-		// tableRoot.appendChild(tableHead);
 		tableRoot.appendChild(tableBody);
 	}
 
@@ -107,35 +76,17 @@ const externalTooltipHandler = (context) => {
 	tooltipEl.style.opacity = 1;
 	tooltipEl.style.left = positionX + tooltip.caretX + "px";
 	tooltipEl.style.top = positionY + tooltip.caretY + "px";
-	tooltipEl.style.font = tooltip.options.bodyFont.string;
+	tooltipEl.style.font = ["DM Sans", "sans-serif"];
 	tooltipEl.style.padding = tooltip.options.padding + "px " + tooltip.options.padding + "px";
 };
 
 const options = {
+	barHoverBackgroundColor: "#FF9B86",
 	maintainAspectRatio: false,
 	plugins: {
 		tooltip: {
 			enabled: false,
-			position: "nearest",
 			external: externalTooltipHandler,
-			// chart: Chart,
-			// backgroundColor: "#382314",
-			// caretSize: 0,
-			// displayColors: false,
-			// opacity: 1,
-			// titleFont: {
-			// 	size: 0,
-			// },
-			// titleMarginBottom: 0,
-			// bodyFont: {
-			// 	size: 18,
-			// },
-			// callbacks: {
-			// 	label: function (tooltipItems) {
-			// 		return "$" + tooltipItems.formattedValue;
-			// 	},
-			// },
-			// yAlign: "top",
 		},
 	},
 	responsive: true,
@@ -194,7 +145,6 @@ function App() {
 						<div className='w-72 h-12 bg-logo' />
 					</div>
 					{/* chart */}
-					{/* px-5 py-6 */}
 					<div className='w-343 h-421 px-5 py-6 bg-card_white rounded-10'>
 						<h1 className='font-sans font-bold text-font24 leading-39'>Spending - Last 7 days</h1>
 						{/* chart body */}
