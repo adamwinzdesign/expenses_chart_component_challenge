@@ -5,6 +5,7 @@ import "./App.css";
 // import Balance from "./Balance";
 import Heading from "./Heading";
 import Summary from "./components/Summary";
+import ChartRef from "./components/ChartRef";
 
 // ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
@@ -152,7 +153,7 @@ function App() {
 						{/* chart body */}
 
 						{/* <Chart options={options} data={data} /> */}
-
+						<ChartRef />
 						<Summary />
 					</div>
 				</div>
