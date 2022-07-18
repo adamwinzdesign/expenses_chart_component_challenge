@@ -1,9 +1,6 @@
 import { data as defaultData } from "../data.jsx";
 import { useRef, useEffect } from "react";
-// import { Chart, BarElement } from "chart.js/auto";
 import Chart from "chart.js/auto";
-
-// Chart.register(BarElement);
 
 const labels = defaultData.map((data) => data.day);
 const amount = defaultData.map((data) => data.amount);
@@ -32,12 +29,60 @@ const data = {
 	],
 };
 
+const labelTooltip = (context) => {
+	let label = context.dataset.label || "";
+
+	if (label) {
+		label += ": ";
+	}
+	if (context.parsed.y !== null) {
+		label += new Intl.NumberFormat("en-US", {
+			style: "currency",
+			currency: "USD",
+		}).format(context.parsed.y);
+	}
+	return label;
+};
+
 const chartConfig = {
 	type: "bar",
 	data,
 	options: {
 		onHover: (event, chartElement) => {
 			event.native.target.style.cursor = chartElement[0] ? "pointer" : "default";
+		},
+		scales: {
+			y: {
+				display: false,
+				beginAtZero: true,
+				ticks: { display: false },
+				grid: { display: false },
+			},
+			x: {
+				grid: { display: false, borderWidth: 0, ticks: { display: true, color: "#92857A" } },
+			},
+		},
+		plugins: {
+			legend: {
+				display: false,
+			},
+			tooltip: {
+				// yAlign: "bottom",
+				xAlign: "center",
+				caretSize: 0,
+				displayColors: false,
+				bodyFont: {
+					family: "DM Sans",
+					weight: 700,
+					color: "#FFFBF6",
+					size: "20px",
+				},
+				callbacks: {
+					label: labelTooltip,
+					title: () => "",
+				},
+				opacity: 1,
+			},
 		},
 	},
 };

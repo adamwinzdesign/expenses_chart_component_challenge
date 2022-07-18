@@ -12,7 +12,7 @@ module.exports = {
 			colors: {
 				cream_bg: "#F8E9DD",
 				orange_main: "#EC755D",
-				orange_light: "FF9B86",
+				orange_light: "#FF9B86",
 				cyan: "#76B5BC",
 				light_cyan: "#B4E0E5",
 				card_white: "#FFFBF6",
