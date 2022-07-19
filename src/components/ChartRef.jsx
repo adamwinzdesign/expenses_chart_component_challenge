@@ -1,6 +1,15 @@
 import { data as defaultData } from "../data.jsx";
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
+// import { Tooltip } from "chart.js";
+
+// Tooltip.positioners.customPosition = function (elements, eventPosition) {
+// /** @type {Chart.Tooltip} */
+// 	if (elements.length) {
+// 		console.log(elements[0].element);
+// 	}
+// 	// return { x: 1, y: 1 };
+// };
 
 const labels = defaultData.map((data) => data.day);
 const amount = defaultData.map((data) => data.amount);
@@ -48,6 +57,7 @@ const chartConfig = {
 	type: "bar",
 	data,
 	options: {
+		maintainAspectRatio: false,
 		onHover: (event, chartElement) => {
 			event.native.target.style.cursor = chartElement[0] ? "pointer" : "default";
 		},
@@ -59,7 +69,8 @@ const chartConfig = {
 				grid: { display: false },
 			},
 			x: {
-				grid: { display: false, borderWidth: 0, ticks: { display: true, color: "#92857A" } },
+				ticks: { display: true, color: "#92857A" },
+				grid: { display: false, borderWidth: 0 },
 			},
 		},
 		plugins: {
@@ -67,10 +78,10 @@ const chartConfig = {
 				display: false,
 			},
 			tooltip: {
-				// yAlign: "bottom",
-				xAlign: "center",
+				yAlign: "bottom",
 				caretSize: 0,
 				displayColors: false,
+				// position: "customPosition",
 				bodyFont: {
 					family: "DM Sans",
 					weight: 700,
@@ -81,7 +92,6 @@ const chartConfig = {
 					label: labelTooltip,
 					title: () => "",
 				},
-				opacity: 1,
 			},
 		},
 	},
@@ -98,7 +108,7 @@ const ChartRef = () => {
 	}, [chartRef]);
 
 	return (
-		<div className='border-2 relative h-201 mt-5 mb-6 flex items-end'>
+		<div className='relative h-201 mt-5 mb-6 flex items-end'>
 			<canvas ref={chartRef} id='chartRef' />
 		</div>
 	);
