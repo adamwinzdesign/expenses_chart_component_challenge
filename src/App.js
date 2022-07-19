@@ -11,8 +11,10 @@ function App() {
 				<div className='w-343 h-534 xl:w-540 xl:h-660 flex flex-col items-center justify-between'>
 					<Heading />
 					{/* chart */}
-					<div className='w-343 h-421 px-5 py-6 bg-card_white rounded-10'>
-						<h1 className='font-sans font-bold text-font24 leading-39'>Spending - Last 7 days</h1>
+					<div className='w-343 h-421 xl:w-540 xl:h-511 px-5 py-6 xl:px-10 xl:py-8 bg-card_white rounded-10'>
+						<h1 className='font-sans font-bold text-font24 xl:text-font32 leading-39'>
+							Spending - Last 7 days
+						</h1>
 						{/* chart body */}
 						<ChartRef />
 						<Summary />

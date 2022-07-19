@@ -22,7 +22,7 @@ const ChartRef = () => {
 	}, [chartRef]);
 
 	return (
-		<div className='relative h-201 mt-5 mb-6 flex items-end'>
+		<div className='relative h-201 xl:h-210 mt-5 mb-6 xl:mt-6 xl:mb-8 flex items-end'>
 			<canvas ref={chartRef} id='chartRef' />
 		</div>
 	);
