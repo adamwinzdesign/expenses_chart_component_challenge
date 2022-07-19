@@ -1,15 +1,16 @@
 import { data as defaultData } from "../data.jsx";
 import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
-// import { Tooltip } from "chart.js";
+import { Tooltip } from "chart.js";
 
-// Tooltip.positioners.customPosition = function (elements, eventPosition) {
-// /** @type {Chart.Tooltip} */
-// 	if (elements.length) {
-// 		console.log(elements[0].element);
-// 	}
-// 	// return { x: 1, y: 1 };
-// };
+Tooltip.positioners.customPosition = function (elements) {
+	/** @type {Chart.Tooltip} */
+	if (elements.length) {
+		// console.log(elements[0].element);
+		return { x: elements[0].element.x, y: 165 - elements[0].element.height };
+	}
+	return { x: null, y: null };
+};
 
 const labels = defaultData.map((data) => data.day);
 const amount = defaultData.map((data) => data.amount);
@@ -81,7 +82,7 @@ const chartConfig = {
 				yAlign: "bottom",
 				caretSize: 0,
 				displayColors: false,
-				// position: "customPosition",
+				position: "customPosition",
 				bodyFont: {
 					family: "DM Sans",
 					weight: 700,
